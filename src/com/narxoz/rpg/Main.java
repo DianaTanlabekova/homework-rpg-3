@@ -6,9 +6,9 @@ import com.narxoz.rpg.battle.BattleEngine;
 import com.narxoz.rpg.battle.Combatant;
 import com.narxoz.rpg.battle.EncounterResult;
 import com.narxoz.rpg.enemy.Goblin;
+import com.narxoz.rpg.enemy.Orc; 
 import com.narxoz.rpg.hero.Mage;
 import com.narxoz.rpg.hero.Warrior;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +20,7 @@ public class Main {
         Warrior warrior = new Warrior("Arthas");
         Mage mage = new Mage("Jaina");
         Goblin goblin = new Goblin();
+        Orc orc = new Orc(); 
 
         // TODO: Wrap with adapters
         List<Combatant> heroes = new ArrayList<>();
@@ -28,6 +29,7 @@ public class Main {
 
         List<Combatant> enemies = new ArrayList<>();
         enemies.add(new EnemyCombatantAdapter(goblin));
+        enemies.add(new EnemyCombatantAdapter(orc)); 
 
         // TODO: Demonstrate Singleton behavior
         BattleEngine engineA = BattleEngine.getInstance();
