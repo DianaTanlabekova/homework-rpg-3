@@ -54,10 +54,10 @@ public final class BattleEngine {
                 int power = striker.getAttackPower();
                 
                 victim.takeDamage(power);
-                result.addLog("[" + striker.getName() + "] deals " + power + " damage to [" + victim.getName() + "]");
+                result.addLog(striker.getSymbol() + " " + striker.getName() + " strikes for " + power + " damage to " + victim.getName());
                 
                 if (!victim.isAlive()) {
-                    result.addLog("!! " + victim.getName() + " has been eliminated !!");
+                    result.addLog("!! " + victim.getSymbol() + " " + victim.getName() + " has been eliminated !!");
                     activeB.remove(victim);
                 }
             }
@@ -71,7 +71,7 @@ public final class BattleEngine {
                 int power = striker.getAttackPower();
                 
                 victim.takeDamage(power);
-                result.addLog("[" + striker.getName() + "] deals " + power + " damage to [" + victim.getName() + "]");
+                result.addLog(striker.getSymbol() + " " + striker.getName() + " strikes for " + power + " damage to " + victim.getName());
                 
                 if (!victim.isAlive()) {
                     result.addLog("!! " + victim.getName() + " has been eliminated !!");

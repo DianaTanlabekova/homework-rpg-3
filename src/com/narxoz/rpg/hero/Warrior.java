@@ -4,12 +4,14 @@ public class Warrior implements Hero {
     private final String name;
     private final int power;
     private int health;
+    
 
     public Warrior(String name) {
         this.name = name;
         // TODO: tune stats if needed
         this.power = 20;
         this.health = 120;
+       
     }
 
     @Override
@@ -35,8 +37,8 @@ public class Warrior implements Hero {
     public boolean isAlive() {
         return health > 0;
     }
+    @Override public int getHealth() {
+         return health; }
 
-    public int getHealth() {
-        return health;
-    }
 }
+

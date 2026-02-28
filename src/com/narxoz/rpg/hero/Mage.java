@@ -4,12 +4,14 @@ public class Mage implements Hero {
     private final String name;
     private final int power;
     private int health;
+   
 
     public Mage(String name) {
         this.name = name;
         // TODO: tune stats if needed
         this.power = 25;
         this.health = 80;
+        
     }
 
     @Override
@@ -35,8 +37,10 @@ public class Mage implements Hero {
     public boolean isAlive() {
         return health > 0;
     }
-
+    
+    @Override
     public int getHealth() {
-        return health;
-    }
+    return health;
+}
+
 }

@@ -4,29 +4,35 @@ public class BasicEnemy implements Enemy {
     private final String title;
     private final int damage;
     private int health;
+    private boolean isEnraged;
+    
 
     public BasicEnemy(String title, int damage, int health) {
         this.title = title;
         this.damage = damage;
         this.health = health;
+        this.isEnraged = false;
+        
     }
 
     @Override
     public String getTitle() {
+         if (isEnraged) {
+            return title + " Enraged";
+        }
         return title;
     }
 
     @Override
     public int getDamage() {
-        return damage;
+         return isEnraged ? damage * 2 : damage;
     }
 
     @Override
     public void applyDamage(int amount) {
-        // TODO: enforce min 0
-        health -= amount;
-        if (health < 0) {
-            health = 0;
+        health = Math.max(0, health - amount);
+        if (health < 20 && health > 0) {
+            isEnraged = true;
         }
     }
 
@@ -37,5 +43,9 @@ public class BasicEnemy implements Enemy {
 
     public int getHealth() {
         return health;
+    }
+
+    public int getRageMode() {
+        return isEnraged ? 2 : 1;
     }
 }
