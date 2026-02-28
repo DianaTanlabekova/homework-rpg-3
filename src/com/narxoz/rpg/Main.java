@@ -16,35 +16,45 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== RPG Battle Engine Demo ===\n");
 
-        // TODO: Create heroes and enemies
+        
         Warrior warrior = new Warrior("Arthas");
         Mage mage = new Mage("Jaina");
-        Goblin goblin = new Goblin();
-        Orc orc = new Orc(); 
-
-        // TODO: Wrap with adapters
+        
         List<Combatant> heroes = new ArrayList<>();
         heroes.add(new HeroCombatantAdapter(warrior));
         heroes.add(new HeroCombatantAdapter(mage));
 
         List<Combatant> enemies = new ArrayList<>();
-        enemies.add(new EnemyCombatantAdapter(goblin));
-        enemies.add(new EnemyCombatantAdapter(orc)); 
+        enemies.add(new EnemyCombatantAdapter(new Goblin("Leo")));
+        enemies.add(new EnemyCombatantAdapter(new Orc("Donatello"))); 
 
-        // TODO: Demonstrate Singleton behavior
-        BattleEngine engineA = BattleEngine.getInstance();
-        BattleEngine engineB = BattleEngine.getInstance();
-        System.out.println("Same instance? " + (engineA == engineB));
+        
+        BattleEngine engine = BattleEngine.getInstance();
+        BattleEngine secondEngineCheck = BattleEngine.getInstance();
+        System.out.println("[System] Checking Singleton instance...");
+        System.out.println("Are both engines the same instance? " + (engine == secondEngineCheck));
         System.out.println();
 
-        // TODO: Run battle and print summary
-        engineA.setRandomSeed(42L);
-        EncounterResult result = engineA.runEncounter(heroes, enemies);
+        
+        System.out.println("[Battle] Starting encounter...");
+        engine.setRandomSeed(42L);
+        EncounterResult result = engine.runEncounter(heroes, enemies);
 
-        System.out.println("Winner: " + result.getWinner());
-        System.out.println("Rounds: " + result.getRounds());
+        
         for (String line : result.getBattleLog()) {
             System.out.println(line);
+        }
+
+        
+        System.out.println("\n=== Final Summary ===");
+        System.out.println("Winner: " + result.getWinner());
+        System.out.println("Rounds played: " + result.getRounds());
+        
+       
+        System.out.println("\nSurvivors Status:");
+        for (Combatant h : heroes) {
+            String status = h.isAlive() ? "ALIVE (HP: " + h.getHealth() + ")" : "DEAD";
+            System.out.println(h.getName() + ": " + status);
         }
 
         System.out.println("\n=== Demo Complete ===");

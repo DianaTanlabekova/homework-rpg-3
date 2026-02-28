@@ -1,7 +1,7 @@
 package com.narxoz.rpg.enemy;
 
 public class Goblin extends BasicEnemy {
-    public Goblin() {
-        super("Goblin", 13, 61);
+    public Goblin(String name) {
+        super(name + " (Goblin)", 13, 61);
     }
 }
